@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from "react";
 import Select from "./select";
+import './App.css'
 
 export default function App() {
   const [pagina, setPagina] = useState("inicio");
-
 
   const fotosPaisajes = ['Playa2.jpg', 'Banco.jpg','Lago.jpg','Nubes.jpg','Playa.jpg']
   const [fotoSeleccionada, setFotoSeleccionada] = React.useState(0)
@@ -39,47 +39,60 @@ export default function App() {
   }
 
   return (
-    <div>
-      <button onClick={() => setPagina("inicio")}>Inicio</button>
-      <button onClick={() => setPagina("autos")}>Autos</button>
+    <div className="app-container">
+      <header className="app-header">
+        <h1>Actividad 5</h1>
+        <nav className="app-nav">
+          <button className="nav-button" onClick={() => setPagina("inicio")}>Inicio</button>
+          <button className="nav-button" onClick={() => setPagina("autos")}>Autos</button>
+        </nav>
+      </header>
 
       {pagina === "inicio" && (
-        <div>
-          <h2>Fotos de paisajes tomadas por mi</h2>
+        <main className="page-content">
+          <section className="card">
+            <h2>Fotos de paisajes tomadas por mi</h2>
+            <div className="button-row">
+              <button className="action-button" onClick={fotoPrevia}>&lt;</button>
+              <button className="action-button" onClick={fotoSiguiente}>&gt;</button>
+            </div>
 
-          <input type="button" value="<" onClick={fotoPrevia} />
-          <input type="button" value=">" onClick={fotoSiguiente} />
+            <p className="image-wrapper">
+              <img
+                src={process.env.PUBLIC_URL + "/img/" + fotosPaisajes[fotoSeleccionada]}
+                alt="paisaje"
+                width={500}
+                className="photo"
+              />
+            </p>
 
-          <p>
-            <img
-              src={process.env.PUBLIC_URL + "/img/" + fotosPaisajes[fotoSeleccionada]}
-              alt="paisaje"
-              width={500}
-            />
-          </p>
+            <p>{fotosPaisajes[fotoSeleccionada]}</p>
+          </section>
 
-          <p>{fotosPaisajes[fotoSeleccionada]}</p>
+          <hr className="divider" />
 
-          <hr />
+          <section className="card">
+            <h2>Fotos Unibe</h2>
+            <div className="button-row">
+              <button className="action-button" onClick={fotoUnibePrevia}>&lt;</button>
+              <button className="action-button" onClick={fotoUnibeSiguiente}>&gt;</button>
+            </div>
 
-          <h2>Fotos Unibe</h2>
+            <p>
+              <img
+                src={require(`./imgs/${fotosUnibe[fotoUnibeSeleccionada]}`)}
+                alt="foto unibe"
+                width={500}
+                className="photo"
+              />
+            </p>
 
-          <input type="button" value="<" onClick={fotoUnibePrevia} />
-          <input type="button" value=">" onClick={fotoUnibeSiguiente} />
-
-          <p>
-            <img
-              src={require(`./imgs/${fotosUnibe[fotoUnibeSeleccionada]}`)}
-              alt="foto unibe"
-              width={500}
-            />
-          </p>
-
-          <p>{fotosUnibe[fotoUnibeSeleccionada]}</p>
-        </div>
+            <p>{fotosUnibe[fotoUnibeSeleccionada]}</p>
+          </section>
+        </main>
       )}
 
-      {pagina === "autos" && <Select/>}
+      {pagina === "autos" && <Select />}
     </div>
   );
 }

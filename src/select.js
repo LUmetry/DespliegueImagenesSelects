@@ -23,7 +23,7 @@ function Select() {
 
   return (
     <div className="formulario">
-      <div>
+      <div className="select-card">
         <select value={rubro.codigo} onChange={cambiarRubro}>
           {rubros.map(rubro => (
             <option key={rubro.codigo} value={rubro.codigo}>{rubro.nombre}</option>
@@ -37,7 +37,7 @@ function Select() {
           ))}
         </select>
       </div>
-      <div>
+      <div className="select-details">
         <ul>
           <li>Tipo de auto:<strong>{rubro.nombre}</strong></li>
           <li>Modelo:<strong>{articulo.nombre}</strong></li>
