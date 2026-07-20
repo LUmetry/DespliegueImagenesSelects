@@ -43,7 +43,7 @@ export default function App() {
       <header className="app-header">
         <h1>Actividad 5</h1>
         <nav className="app-nav">
-          <button className="nav-button" onClick={() => setPagina("inicio")}>Inicio</button>
+          <button className="nav-button" onClick={() => setPagina("inicio")}>Fotos</button>
           <button className="nav-button" onClick={() => setPagina("autos")}>Autos</button>
         </nav>
       </header>
